@@ -97,12 +97,6 @@ class Sidebar extends StatelessWidget {
               title: const Text('Produk Hukum'),
               children: [
                 ListTile(
-                  title: const Text('Instrumen HAM Nasional'),
-                  onTap: () {
-                    Navigator.pushReplacementNamed(context, '/ham-nasional');
-                  },
-                ),
-                ListTile(
                   title: const Text('Instrumen HAM Internasional'),
                   onTap: () {
                     Navigator.pushReplacementNamed(
@@ -111,14 +105,20 @@ class Sidebar extends StatelessWidget {
                     );
                   },
                 ),
+                ListTile(
+                  title: const Text('Instrumen HAM Nasional'),
+                  onTap: () {
+                    Navigator.pushReplacementNamed(context, '/ham-nasional');
+                  },
+                ),
               ],
             ),
 
             ListTile(
               leading: const Icon(Icons.library_books),
-              title: const Text('Pusat Informasi/PPID'),
+              title: const Text('Pusat Informasi'),
               onTap: () {
-                Navigator.pushReplacementNamed(context, '/ppid');
+                Navigator.pushReplacementNamed(context, '/pusat-informasi');
               },
             ),
           ],
