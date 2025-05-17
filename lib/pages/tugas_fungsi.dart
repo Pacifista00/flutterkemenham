@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:kemenham/components/sidebar.dart';
 import 'package:kemenham/components/footer.dart';
 
-class TentangKemenham extends StatelessWidget {
-  const TentangKemenham({super.key});
+class TugasFungsi extends StatelessWidget {
+  const TugasFungsi({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,21 +19,16 @@ class TentangKemenham extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: const [
                   Text(
-                    'Tentang Kementerian Hak Asasi Manusia Republik Indonesia',
+                    'Tugas dan Fungsi',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: Color(0xFF242458),
                     ),
                   ),
-                  SizedBox(height: 16),
-                  Text(
-                    'Kementerian Hak Asasi Manusia (KemenHAM) adalah lembaga pemerintah yang berada di bawah dan bertanggung jawab kepada Presiden Republik Indonesia. Kementerian ini dipimpin oleh Menteri Hak Asasi Manusia, dengan tugas utama menyelenggarakan urusan pemerintahan di bidang hak asasi manusia.',
-                    style: TextStyle(fontSize: 14),
-                  ),
                   SizedBox(height: 24),
                   Text(
-                    'Kedudukan',
+                    'Tugas dan Fungsi Kementerian Hak Asasi Manusia adalah sebagai berikut:',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -42,12 +37,12 @@ class TentangKemenham extends StatelessWidget {
                   ),
                   SizedBox(height: 8),
                   Text(
-                    'KemenHAM berada di bawah dan bertanggung jawab kepada Presiden.',
+                    'Berdasarkan Peraturan Menteri Hak Asasi Manusia Nomor 1 Tahun 2024 tentang Organisasi dan Tata Kerja Kementerian  Hak Asasi Manusia:',
                     style: TextStyle(fontSize: 14),
                   ),
                   SizedBox(height: 24),
                   Text(
-                    'Tugas dan Fungsi',
+                    'Tugas',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -56,10 +51,25 @@ class TentangKemenham extends StatelessWidget {
                   ),
                   SizedBox(height: 8),
                   Text(
-                    'Kementerian mempunyai tugas menyelenggarakan urusan pemerintahan di bidang hak asasi manusia untuk membantu Presiden dalam menyelenggarakan pemerintahan negara. Dalam melaksanakan tugas sebagaimana dimaksud dalam Pasal 5, Kementerian menyelenggarakan fungsi:',
+                    'Kementerian mempunyai tugas menyelenggarakan urusan pemerintahan di bidang hak asasi manusia untuk membantu Presiden dalam menyelenggarakan pemerintahan negara.',
                     style: TextStyle(fontSize: 14),
                   ),
                   SizedBox(height: 16),
+                  Text(
+                    'Fungsi',
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF242458),
+                    ),
+                  ),
+
+                  SizedBox(height: 8),
+                  Text(
+                    'Dalam melaksanakan tugas sebagaimana dimaksud dalam Pasal 5, Kementerian menyelenggarakan fungsi:',
+                    style: TextStyle(fontSize: 14),
+                  ),
+                  SizedBox(height: 8),
                   BulletList(
                     items: [
                       'Perumusan, penetapan, dan pelaksanaan kebijakan di bidang instrumen, penguatan, pelayanan, dan kepatuhan hak asasi manusia;',

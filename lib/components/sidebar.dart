@@ -23,10 +23,15 @@ class Sidebar extends StatelessWidget {
           children: [
             DrawerHeader(
               decoration: const BoxDecoration(color: Colors.blue),
-              child: Image.asset(
-                'assets/images/portalweb-headerlogo.png',
-                width: 300,
-                height: 100,
+              child: InkWell(
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, '/');
+                },
+                child: Image.asset(
+                  'assets/images/portalweb-headerlogo.png',
+                  width: 300,
+                  height: 100,
+                ),
               ),
             ),
 

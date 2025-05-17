@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:kemenham/components/sidebar.dart';
 import 'package:kemenham/components/footer.dart';
 
-class TentangKemenham extends StatelessWidget {
-  const TentangKemenham({super.key});
+class VisiMisi extends StatelessWidget {
+  const VisiMisi({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,21 +19,16 @@ class TentangKemenham extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: const [
                   Text(
-                    'Tentang Kementerian Hak Asasi Manusia Republik Indonesia',
+                    'Visi dan Misi',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: Color(0xFF242458),
                     ),
                   ),
-                  SizedBox(height: 16),
-                  Text(
-                    'Kementerian Hak Asasi Manusia (KemenHAM) adalah lembaga pemerintah yang berada di bawah dan bertanggung jawab kepada Presiden Republik Indonesia. Kementerian ini dipimpin oleh Menteri Hak Asasi Manusia, dengan tugas utama menyelenggarakan urusan pemerintahan di bidang hak asasi manusia.',
-                    style: TextStyle(fontSize: 14),
-                  ),
                   SizedBox(height: 24),
                   Text(
-                    'Kedudukan',
+                    'Visi',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -42,37 +37,35 @@ class TentangKemenham extends StatelessWidget {
                   ),
                   SizedBox(height: 8),
                   Text(
-                    'KemenHAM berada di bawah dan bertanggung jawab kepada Presiden.',
+                    'Bersama Indonesia Maju Menuju Indonesia Emas 2045',
                     style: TextStyle(fontSize: 14),
                   ),
-                  SizedBox(height: 24),
+                  SizedBox(height: 16),
                   Text(
-                    'Tugas dan Fungsi',
+                    'Misi',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 15,
                       fontWeight: FontWeight.bold,
                       color: Color(0xFF242458),
                     ),
                   ),
+
                   SizedBox(height: 8),
-                  Text(
-                    'Kementerian mempunyai tugas menyelenggarakan urusan pemerintahan di bidang hak asasi manusia untuk membantu Presiden dalam menyelenggarakan pemerintahan negara. Dalam melaksanakan tugas sebagaimana dimaksud dalam Pasal 5, Kementerian menyelenggarakan fungsi:',
-                    style: TextStyle(fontSize: 14),
-                  ),
-                  SizedBox(height: 16),
+                  Text('Asta Cita', style: TextStyle(fontSize: 14)),
+                  SizedBox(height: 8),
                   BulletList(
                     items: [
-                      'Perumusan, penetapan, dan pelaksanaan kebijakan di bidang instrumen, penguatan, pelayanan, dan kepatuhan hak asasi manusia;',
-                      'Pelaksanaan bimbingan teknis dan supervisi atas pelaksanaan urusan Kementerian;',
-                      'Koordinasi pelaksanaan tugas, pembinaan, dan pemberian dukungan administrasi kepada seluruh unsur organisasi di lingkungan Kementerian;',
-                      'Pengelolaan barang milik/kekayaan negara yang menjadi tanggung jawab Kementerian;',
-                      'Pengawasan atas pelaksanaan tugas di lingkungan Kementerian;',
-                      'Pelaksanaan kegiatan teknis yang berskala nasional;',
-                      'Pelaksanaan tugas pokok sampai ke daerah;',
-                      'Pelaksanaan dukungan yang bersifat substantif kepada seluruh unsur organisasi di lingkungan Kementerian;',
-                      'Pelaksanaan fungsi lain yang diberikan oleh presiden.',
+                      'Memperkokoh ideologi Pancasila, demokrasi, dan hak asasi manusia (HAM).',
+                      'Memantapkan sistem pertahanan keamanan negara dan mendorong kemandirian bangsa melalui swasembada pangan, energi, air, ekonomi kreatif, ekonomi hijau, dan ekonomi biru.',
+                      'Meningkatkan lapangan kerja yang berkualitas, mendorong kewirausahaan, mengembangkan industri kreatif, dan melanjutkan pengembangan infrastruktur.',
+                      'Memperkuat pembangunan sumber daya manusia (SDM), sains, teknologi, pendidikan, kesehatan, prestasi olahraga, kesetaraan gender, serta penguatan peran perempuan, pemuda, dan penyandang disabilitas.',
+                      'Melanjutkan hilirisasi dan industrialisasi untuk meningkatkan nilai tambah di dalam negeri.',
+                      'Membangun dari desa dan dari bawah untuk pemerataan ekonomi dan pemberantasan kemiskinan.',
+                      'Memperkuat reformasi politik, hukum, dan birokrasi, serta memperkuat pencegahan dan pemberantasan korupsi dan narkoba.',
+                      'Memperkuat penyelarasan kehidupan yang harmonis dengan lingkungan, alam, dan budaya, serta peningkatan toleransi antarumat beragama untuk mencapai masyarakat yang adil dan makmur.',
                     ],
                   ),
+
                   SizedBox(height: 32),
                 ],
               ),
