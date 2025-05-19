@@ -71,7 +71,7 @@ class MyApp extends StatelessWidget {
         '/pengaduan/2022': (context) => const Pengaduan2022(),
         '/pengaduan/2023': (context) => const Pengaduan2023(),
         '/pengaduan/2024': (context) => const Pengaduan2024(),
-        '/unit-kerja/detail-berita': (context) => const DetailBerita(),
+        '/berita-detail': (context) => const DetailBerita(),
         '/list-berita': (context) => const ListBerita(),
         '/chatbot': (context) => const ChatBot(),
       },

@@ -1,7 +1,46 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:kemenham/config/api_config.dart';
 
-class BeritaHam extends StatelessWidget {
+class BeritaHam extends StatefulWidget {
   const BeritaHam({super.key});
+
+  @override
+  State<BeritaHam> createState() => _BeritaHamState();
+}
+
+class _BeritaHamState extends State<BeritaHam> {
+  List<dynamic> beritaList = [];
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchBerita();
+  }
+
+  Future<void> fetchBerita() async {
+    try {
+      final response = await http.get(
+        Uri.parse('${ApiConfig.baseUrl}/api/berita/ham'),
+      );
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        setState(() {
+          beritaList = data['data'];
+          isLoading = false;
+        });
+      } else {
+        throw Exception('Gagal mengambil data berita HAM');
+      }
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +53,6 @@ class BeritaHam extends StatelessWidget {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Text(
                 'Berita HAM Terkini',
@@ -25,19 +63,10 @@ class BeritaHam extends StatelessWidget {
                 ),
               ),
               ElevatedButton(
-                onPressed: () {
-                  // Aksi tombol di sini
-                },
+                onPressed: () {},
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
                   foregroundColor: Color(0xFF242458),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 8,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
                 ),
                 child: const Text('Selengkapnya'),
               ),
@@ -46,49 +75,33 @@ class BeritaHam extends StatelessWidget {
           const SizedBox(height: 16),
           SizedBox(
             height: 277,
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  _buildNewsCard(
-                    context: context,
-                    imagePath: 'assets/images/cover.png',
-                    title: 'Berita 1',
-                    date: '16 Mei 2025',
-                    category: 'Berita HAM Terkini',
-                    description:
-                        'Kementerian Hukum dan HAM menetapkan kebijakan baru untuk mendukung reformasi birokrasi...',
-                    onReadMore: () {
-                      // print('Berita 1 diklik');
-                    },
-                  ),
-                  _buildNewsCard(
-                    context: context,
-                    imagePath: 'assets/images/cover.png',
-                    title: 'Berita 2',
-                    date: '15 Mei 2025',
-                    category: 'Berita HAM Terkini',
-                    description:
-                        'Presiden menegaskan pentingnya HAM dalam pemerintahan yang bersih reformasi birokrasi...',
-                    onReadMore: () {
-                      // print('Berita 2 diklik');
-                    },
-                  ),
-                  _buildNewsCard(
-                    context: context,
-                    imagePath: 'assets/images/cover.png',
-                    title: 'Berita 3',
-                    date: '14 Mei 2025',
-                    category: 'Berita HAM Terkini',
-                    description:
-                        'Pemerintah menyalurkan bantuan hukum gratis untuk masyarakat kurang mampu...',
-                    onReadMore: () {
-                      // print('Berita 3 diklik');
-                    },
-                  ),
-                ],
-              ),
-            ),
+            child:
+                isLoading
+                    ? const Center(child: CircularProgressIndicator())
+                    : SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children:
+                            beritaList.map((berita) {
+                              return _buildNewsCard(
+                                context: context,
+                                imagePath:
+                                    '${ApiConfig.baseUrl}/storage/${berita['image_path']}',
+                                title: berita['title'] ?? '',
+                                date: berita['date'] ?? '',
+                                category: berita['category'] ?? '',
+                                description: berita['description'] ?? '',
+                                onReadMore: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    '/berita-detail',
+                                    arguments: {'id': berita['id']},
+                                  );
+                                },
+                              );
+                            }).toList(),
+                      ),
+                    ),
           ),
         ],
       ),
@@ -112,18 +125,21 @@ class BeritaHam extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(imagePath, height: 100, width: 200, fit: BoxFit.cover),
+            Image.network(
+              imagePath,
+              height: 100,
+              width: 200,
+              fit: BoxFit.cover,
+            ),
+            const SizedBox(height: 4),
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 0.0,
-                vertical: 6.0,
-              ),
+              padding: const EdgeInsets.symmetric(vertical: 6.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    maxLines: 1,
                     title,
+                    maxLines: 1,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 13,
@@ -146,12 +162,7 @@ class BeritaHam extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(
-                          context,
-                          '/unit-kerja/detail-berita',
-                        );
-                      },
+                      onPressed: onReadMore,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFFE3C00A),
                         padding: const EdgeInsets.symmetric(vertical: 12),

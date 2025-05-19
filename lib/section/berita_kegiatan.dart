@@ -1,7 +1,46 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:kemenham/config/api_config.dart';
 
-class BeritaKegiatan extends StatelessWidget {
+class BeritaKegiatan extends StatefulWidget {
   const BeritaKegiatan({super.key});
+
+  @override
+  State<BeritaKegiatan> createState() => _BeritaKegiatanState();
+}
+
+class _BeritaKegiatanState extends State<BeritaKegiatan> {
+  List<dynamic> beritaList = [];
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchBerita();
+  }
+
+  Future<void> fetchBerita() async {
+    try {
+      final response = await http.get(
+        Uri.parse('${ApiConfig.baseUrl}/api/berita/kegiatan'),
+      );
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        setState(() {
+          beritaList = data['data']; // Sesuaikan dengan struktur JSON API kamu
+          isLoading = false;
+        });
+      } else {
+        throw Exception('Gagal mengambil data berita');
+      }
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +53,6 @@ class BeritaKegiatan extends StatelessWidget {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Text(
                 'Berita Kegiatan',
@@ -25,19 +63,10 @@ class BeritaKegiatan extends StatelessWidget {
                 ),
               ),
               ElevatedButton(
-                onPressed: () {
-                  // Aksi tombol di sini
-                },
+                onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF242458),
+                  backgroundColor: const Color(0xFF242458),
                   foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 8,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
                 ),
                 child: const Text('Selengkapnya'),
               ),
@@ -46,49 +75,33 @@ class BeritaKegiatan extends StatelessWidget {
           const SizedBox(height: 16),
           SizedBox(
             height: 277,
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  _buildNewsCard(
-                    context: context,
-                    imagePath: 'assets/images/cover.png',
-                    date: '15 April 2005',
-                    category: 'Berita HAM Terkini',
-                    title: 'Berita 1',
-                    description:
-                        'Kementerian Hukum dan HAM menetapkan kebijakan baru untuk mendukung reformasi birokrasi...',
-                    onReadMore: () {
-                      // print('Berita 1 diklik');
-                    },
-                  ),
-                  _buildNewsCard(
-                    context: context,
-                    imagePath: 'assets/images/cover.png',
-                    date: '15 April 2005',
-                    category: 'Berita HAM Terkini',
-                    title: 'Berita 2',
-                    description:
-                        'Presiden menegaskan pentingnya HAM dalam pemerintahan yang bersih reformasi birokrasi...',
-                    onReadMore: () {
-                      // print('Berita 2 diklik');
-                    },
-                  ),
-                  _buildNewsCard(
-                    context: context,
-                    imagePath: 'assets/images/cover.png',
-                    date: '15 April 2005',
-                    category: 'Berita HAM Terkini',
-                    title: 'Berita 3',
-                    description:
-                        'Pemerintah menyalurkan bantuan hukum gratis untuk masyarakat kurang mampu...',
-                    onReadMore: () {
-                      // print('Berita 3 diklik');
-                    },
-                  ),
-                ],
-              ),
-            ),
+            child:
+                isLoading
+                    ? const Center(child: CircularProgressIndicator())
+                    : SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children:
+                            beritaList.map((berita) {
+                              return _buildNewsCard(
+                                context: context,
+                                imagePath:
+                                    '${ApiConfig.baseUrl}/storage/${berita['image_path']}',
+                                date: berita['date'] ?? '',
+                                category: berita['category'] ?? '',
+                                title: berita['title'] ?? '',
+                                description: berita['description'] ?? '',
+                                onReadMore: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    '/berita-detail',
+                                    arguments: {'id': berita['id']},
+                                  );
+                                },
+                              );
+                            }).toList(),
+                      ),
+                    ),
           ),
         ],
       ),
@@ -112,43 +125,51 @@ class BeritaKegiatan extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(imagePath, height: 100, width: 200, fit: BoxFit.cover),
+            imagePath.startsWith('http')
+                ? Image.network(
+                  imagePath,
+                  height: 100,
+                  width: 200,
+                  fit: BoxFit.cover,
+                )
+                : Image.asset(
+                  imagePath,
+                  height: 100,
+                  width: 200,
+                  fit: BoxFit.cover,
+                ),
             const SizedBox(height: 4),
-
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 0.0,
-                vertical: 6.0,
-              ),
+              padding: const EdgeInsets.symmetric(vertical: 6.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    maxLines: 1,
                     title,
+                    maxLines: 1,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 13,
                       color: Color(0xFF242458),
                     ),
                   ),
+                  const SizedBox(height: 4),
+                  Text(
+                    date,
+                    style: const TextStyle(fontSize: 10, color: Colors.grey),
+                  ),
                   const SizedBox(height: 6),
                   Text(
                     description,
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(fontSize: 12, color: Colors.black),
+                    style: const TextStyle(fontSize: 12),
                   ),
                   const SizedBox(height: 8),
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(
-                          context,
-                          '/unit-kerja/detail-berita',
-                        );
-                      },
+                      onPressed: onReadMore,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFFE3C00A),
                         padding: const EdgeInsets.symmetric(vertical: 12),
