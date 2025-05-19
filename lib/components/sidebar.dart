@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kemenham/components/end_drawer.dart';
+import 'package:kemenham/pages/messagebutton/message_button.dart';
 
 class Sidebar extends StatelessWidget {
   final Widget child;
@@ -22,10 +23,14 @@ class Sidebar extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
-              decoration: const BoxDecoration(color: Colors.blue),
+              decoration: const BoxDecoration(color: Color(0xFFE3C00A)),
               child: InkWell(
                 onTap: () {
-                  Navigator.pushReplacementNamed(context, '/');
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    '/main',
+                    (route) => false,
+                  );
                 },
                 child: Image.asset(
                   'assets/images/portalweb-headerlogo.png',
@@ -42,43 +47,43 @@ class Sidebar extends StatelessWidget {
                 ListTile(
                   title: const Text('Tentang Kementerian HAM'),
                   onTap: () {
-                    Navigator.pushReplacementNamed(context, '/tentang');
+                    Navigator.pushNamed(context, '/tentang');
                   },
                 ),
                 ListTile(
                   title: const Text('Tugas dan Fungsi'),
                   onTap: () {
-                    Navigator.pushReplacementNamed(context, '/tugas-fungsi');
+                    Navigator.pushNamed(context, '/tugas-fungsi');
                   },
                 ),
                 ListTile(
                   title: const Text('Struktur Organisasi'),
                   onTap: () {
-                    Navigator.pushReplacementNamed(context, '/struktur');
+                    Navigator.pushNamed(context, '/struktur');
                   },
                 ),
                 ListTile(
                   title: const Text('Profil Menteri dan Wakil Menteri'),
                   onTap: () {
-                    Navigator.pushReplacementNamed(context, '/profil-menteri');
+                    Navigator.pushNamed(context, '/profil-menteri');
                   },
                 ),
                 ListTile(
                   title: const Text('Visi dan Misi'),
                   onTap: () {
-                    Navigator.pushReplacementNamed(context, '/visi-misi');
+                    Navigator.pushNamed(context, '/visi-misi');
                   },
                 ),
                 ListTile(
                   title: const Text('Sejarah Berdirinya'),
                   onTap: () {
-                    Navigator.pushReplacementNamed(context, '/sejarah');
+                    Navigator.pushNamed(context, '/sejarah');
                   },
                 ),
                 ListTile(
                   title: const Text('Prestasi'),
                   onTap: () {
-                    Navigator.pushReplacementNamed(context, '/prestasi');
+                    Navigator.pushNamed(context, '/prestasi');
                   },
                 ),
               ],
@@ -88,7 +93,8 @@ class Sidebar extends StatelessWidget {
               leading: const Icon(Icons.apartment),
               title: const Text('Unit Kerja'),
               onTap: () {
-                Navigator.pushReplacementNamed(context, '/unit-kerja');
+                //
+                Navigator.pushNamed(context, '/unit-kerja');
               },
             ),
 
@@ -99,32 +105,38 @@ class Sidebar extends StatelessWidget {
                 ListTile(
                   title: const Text('Instrumen HAM Internasional'),
                   onTap: () {
-                    Navigator.pushReplacementNamed(
-                      context,
-                      '/ham-internasional',
-                    );
+                    Navigator.pushNamed(context, '/ham-internasional');
                   },
                 ),
                 ListTile(
                   title: const Text('Instrumen HAM Nasional'),
                   onTap: () {
-                    Navigator.pushReplacementNamed(context, '/ham-nasional');
+                    Navigator.pushNamed(context, '/ham-nasional');
                   },
                 ),
               ],
             ),
 
             ListTile(
+              leading: const Icon(Icons.newspaper),
+              title: const Text('Berita'),
+              onTap: () {
+                Navigator.pushNamed(context, '/list-berita');
+              },
+            ),
+
+            ListTile(
               leading: const Icon(Icons.library_books),
               title: const Text('Pusat Informasi'),
               onTap: () {
-                Navigator.pushReplacementNamed(context, '/pusat-informasi');
+                Navigator.pushNamed(context, '/pusat-informasi');
               },
             ),
           ],
         ),
       ),
       body: child,
+      floatingActionButton: const FloatingChatButton(),
     );
   }
 }

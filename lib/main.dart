@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:kemenham/components/splash_screen.dart';
+import 'package:kemenham/pages/berita/detail_berita.dart';
+import 'package:kemenham/pages/berita/list_berita.dart';
+import 'package:kemenham/pages/chatbot/chat_bot.dart';
 import 'package:kemenham/pages/detailunitkerja/direktorat_jendral_instrumen.dart';
 import 'package:kemenham/pages/detailunitkerja/direktorat_jendral_pelayanan.dart';
 import 'package:kemenham/pages/detailunitkerja/inspektorat_jendral.dart';
 import 'package:kemenham/pages/detailunitkerja/pusat_data.dart';
 import 'package:kemenham/pages/detailunitkerja/pusat_pengembangan.dart';
 import 'package:kemenham/pages/detailunitkerja/sekretariat_jendral.dart';
+import 'package:kemenham/pages/main_page.dart';
 import 'package:kemenham/pages/pengaduan/pengaduan_2018.dart';
 import 'package:kemenham/pages/pengaduan/pengaduan_2019.dart';
 import 'package:kemenham/pages/pengaduan/pengaduan_2020.dart';
@@ -38,6 +42,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
+        '/main': (context) => const MainPage(),
         '/unit-kerja': (context) => const UnitKerja(),
         '/tentang': (context) => const TentangKemenham(),
         '/tugas-fungsi': (context) => const TugasFungsi(),
@@ -54,6 +59,7 @@ class MyApp extends StatelessWidget {
         '/unit-kerja/inspektoratjendral':
             (context) => const InspektoratJendral(),
         '/unit-kerja/pusatdata': (context) => const PusatData(),
+
         '/unit-kerja/pusatpengembangan': (context) => const PusatPengembangan(),
         '/ham-internasional': (context) => const InstrumenHamInternasional(),
         '/ham-nasional': (context) => const InstrumenHamNasional(),
@@ -65,6 +71,9 @@ class MyApp extends StatelessWidget {
         '/pengaduan/2022': (context) => const Pengaduan2022(),
         '/pengaduan/2023': (context) => const Pengaduan2023(),
         '/pengaduan/2024': (context) => const Pengaduan2024(),
+        '/unit-kerja/detail-berita': (context) => const DetailBerita(),
+        '/list-berita': (context) => const ListBerita(),
+        '/chatbot': (context) => const ChatBot(),
       },
     );
   }

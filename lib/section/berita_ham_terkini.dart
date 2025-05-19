@@ -51,9 +51,11 @@ class BeritaHam extends StatelessWidget {
               child: Row(
                 children: [
                   _buildNewsCard(
+                    context: context,
                     imagePath: 'assets/images/cover.png',
                     title: 'Berita 1',
                     date: '16 Mei 2025',
+                    category: 'Berita HAM Terkini',
                     description:
                         'Kementerian Hukum dan HAM menetapkan kebijakan baru untuk mendukung reformasi birokrasi...',
                     onReadMore: () {
@@ -61,9 +63,11 @@ class BeritaHam extends StatelessWidget {
                     },
                   ),
                   _buildNewsCard(
+                    context: context,
                     imagePath: 'assets/images/cover.png',
                     title: 'Berita 2',
                     date: '15 Mei 2025',
+                    category: 'Berita HAM Terkini',
                     description:
                         'Presiden menegaskan pentingnya HAM dalam pemerintahan yang bersih reformasi birokrasi...',
                     onReadMore: () {
@@ -71,9 +75,11 @@ class BeritaHam extends StatelessWidget {
                     },
                   ),
                   _buildNewsCard(
+                    context: context,
                     imagePath: 'assets/images/cover.png',
                     title: 'Berita 3',
                     date: '14 Mei 2025',
+                    category: 'Berita HAM Terkini',
                     description:
                         'Pemerintah menyalurkan bantuan hukum gratis untuk masyarakat kurang mampu...',
                     onReadMore: () {
@@ -90,9 +96,11 @@ class BeritaHam extends StatelessWidget {
   }
 
   Widget _buildNewsCard({
+    required BuildContext context,
     required String imagePath,
     required String title,
     required String date,
+    required String category,
     required String description,
     VoidCallback? onReadMore,
   }) {
@@ -138,9 +146,14 @@ class BeritaHam extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: onReadMore,
+                      onPressed: () {
+                        Navigator.pushNamed(
+                          context,
+                          '/unit-kerja/detail-berita',
+                        );
+                      },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFFE3C00A),
+                        backgroundColor: const Color(0xFFE3C00A),
                         padding: const EdgeInsets.symmetric(vertical: 12),
                         elevation: 0,
                       ),

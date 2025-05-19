@@ -60,7 +60,7 @@ class UnitKerja extends StatelessWidget {
                                 children: [
                                   ElevatedButton(
                                     onPressed: () {
-                                      Navigator.pushReplacementNamed(
+                                      Navigator.pushNamed(
                                         context,
                                         '/unit-kerja/sekrejen',
                                       );
@@ -110,7 +110,7 @@ class UnitKerja extends StatelessWidget {
                                 children: [
                                   ElevatedButton(
                                     onPressed: () {
-                                      Navigator.pushReplacementNamed(
+                                      Navigator.pushNamed(
                                         context,
                                         '/unit-kerja/dirjeninstrumen',
                                       );
@@ -160,7 +160,7 @@ class UnitKerja extends StatelessWidget {
                                 children: [
                                   ElevatedButton(
                                     onPressed: () {
-                                      Navigator.pushReplacementNamed(
+                                      Navigator.pushNamed(
                                         context,
                                         '/unit-kerja/dirjenpelayanan',
                                       );
@@ -209,7 +209,7 @@ class UnitKerja extends StatelessWidget {
                                 children: [
                                   ElevatedButton(
                                     onPressed: () {
-                                      Navigator.pushReplacementNamed(
+                                      Navigator.pushNamed(
                                         context,
                                         '/unit-kerja/inspektoratjendral',
                                       );
@@ -256,7 +256,7 @@ class UnitKerja extends StatelessWidget {
 
                               TextButton(
                                 onPressed: () {
-                                  Navigator.pushReplacementNamed(
+                                  Navigator.pushNamed(
                                     context,
                                     '/unit-kerja/pusatdata',
                                   );
@@ -272,7 +272,7 @@ class UnitKerja extends StatelessWidget {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  Navigator.pushReplacementNamed(
+                                  Navigator.pushNamed(
                                     context,
                                     '/unit-kerja/pusatpengembangan',
                                   );

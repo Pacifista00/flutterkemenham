@@ -51,7 +51,10 @@ class BeritaKegiatan extends StatelessWidget {
               child: Row(
                 children: [
                   _buildNewsCard(
+                    context: context,
                     imagePath: 'assets/images/cover.png',
+                    date: '15 April 2005',
+                    category: 'Berita HAM Terkini',
                     title: 'Berita 1',
                     description:
                         'Kementerian Hukum dan HAM menetapkan kebijakan baru untuk mendukung reformasi birokrasi...',
@@ -60,7 +63,10 @@ class BeritaKegiatan extends StatelessWidget {
                     },
                   ),
                   _buildNewsCard(
+                    context: context,
                     imagePath: 'assets/images/cover.png',
+                    date: '15 April 2005',
+                    category: 'Berita HAM Terkini',
                     title: 'Berita 2',
                     description:
                         'Presiden menegaskan pentingnya HAM dalam pemerintahan yang bersih reformasi birokrasi...',
@@ -69,7 +75,10 @@ class BeritaKegiatan extends StatelessWidget {
                     },
                   ),
                   _buildNewsCard(
+                    context: context,
                     imagePath: 'assets/images/cover.png',
+                    date: '15 April 2005',
+                    category: 'Berita HAM Terkini',
                     title: 'Berita 3',
                     description:
                         'Pemerintah menyalurkan bantuan hukum gratis untuk masyarakat kurang mampu...',
@@ -87,7 +96,10 @@ class BeritaKegiatan extends StatelessWidget {
   }
 
   Widget _buildNewsCard({
+    required BuildContext context,
     required String imagePath,
+    required String date,
+    required String category,
     required String title,
     required String description,
     VoidCallback? onReadMore,
@@ -101,6 +113,8 @@ class BeritaKegiatan extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.asset(imagePath, height: 100, width: 200, fit: BoxFit.cover),
+            const SizedBox(height: 4),
+
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 0.0,
@@ -129,9 +143,14 @@ class BeritaKegiatan extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: onReadMore,
+                      onPressed: () {
+                        Navigator.pushNamed(
+                          context,
+                          '/unit-kerja/detail-berita',
+                        );
+                      },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFFE3C00A),
+                        backgroundColor: const Color(0xFFE3C00A),
                         padding: const EdgeInsets.symmetric(vertical: 12),
                         elevation: 0,
                       ),

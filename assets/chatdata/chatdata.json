@@ -1,0 +1,67 @@
+[
+  {
+    "questions": ["halo", "hi"],
+    "answer": "Halo! Ada yang bisa saya bantu?"
+  },
+  {
+    "questions": ["terima kasih"],
+    "answer": "Sama-sama! Senang bisa membantu."
+  },
+  {
+    "questions": ["info", "bantuan", "bisa tanya apa"],
+    "answer": "Berikut beberapa hal yang bisa kamu tanyakan: 'visi misi', 'alamat', 'kontak', 'struktur organisasi', 'layanan', 'paspor', 'imigrasi', 'hak asasi manusia', 'cpns', 'lapas', 'notaris', 'ahli waris', 'hukum waris', 'legalisir'."
+  },
+  {
+    "questions": ["visi misi"],
+    "answer": "Visi Kemenkumham adalah 'Menjadi penyelenggara pemerintahan di bidang hukum dan HAM yang profesional, akuntabel dan responsif'."
+  },
+  {
+    "questions": ["alamat"],
+    "answer": "Alamat kantor pusat Kemenkumham: Jl. H.R. Rasuna Said Kav. 6-7, Kuningan, Jakarta Selatan."
+  },
+  {
+    "questions": ["kontak"],
+    "answer": "Hubungi kami di (021) 5253004 atau email: info@kemenkumham.go.id."
+  },
+  {
+    "questions": ["struktur organisasi"],
+    "answer": "Struktur organisasi Kemenkumham terdiri dari Sekretariat Jenderal, Direktorat Jenderal, dan unit-unit eselon lainnya."
+  },
+  {
+    "questions": ["layanan"],
+    "answer": "Layanan kami meliputi: imigrasi, hukum dan HAM, administrasi hukum umum, serta pemasyarakatan."
+  },
+  {
+    "questions": ["paspor"],
+    "answer": "Layanan paspor tersedia di kantor imigrasi terdekat. Anda bisa daftar online melalui imigrasi.go.id."
+  },
+  {
+    "questions": ["imigrasi"],
+    "answer": "Imigrasi mengurus visa, paspor, izin tinggal, dan pengawasan orang asing."
+  },
+  {
+    "questions": ["hak asasi manusia", "ham"],
+    "answer": "Kami memiliki Direktorat Jenderal HAM yang menangani penguatan dan pemajuan HAM di Indonesia."
+  },
+  {
+    "questions": ["cpns"],
+    "answer": "Informasi CPNS Kemenkumham bisa dicek di cpns.kemenkumham.go.id saat periode rekrutmen dibuka."
+  },
+  {
+    "questions": ["lapas", "penjara"],
+    "answer": "Kemenkumham mengelola lembaga pemasyarakatan di seluruh Indonesia, untuk pembinaan narapidana."
+  },
+  {
+    "questions": ["notaris"],
+    "answer": "Informasi pendaftaran dan pelaporan notaris dapat diakses melalui AHU Online di ahu.go.id."
+  },
+  {
+    "questions": ["legalisir"],
+    "answer": "Legalisir dokumen hukum dapat dilakukan melalui aplikasi AHU Online."
+  },
+  {
+    "questions": ["ahli waris", "hukum waris"],
+    "answer": "Untuk penetapan ahli waris, Anda bisa mengurus surat keterangan waris melalui pengadilan atau notaris."
+  }
+]
+

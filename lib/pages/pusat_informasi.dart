@@ -133,7 +133,7 @@ class PusatInformasi extends StatelessWidget {
 Widget yearButton(BuildContext context, String year) {
   return TextButton(
     onPressed: () {
-      Navigator.pushReplacementNamed(context, '/pengaduan/$year');
+      Navigator.pushNamed(context, '/pengaduan/$year');
     },
     child: Text(
       year,
