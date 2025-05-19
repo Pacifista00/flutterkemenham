@@ -3,7 +3,7 @@ import 'package:kemenham/components/sidebar.dart';
 import 'package:kemenham/section/berita_ham_terkini.dart';
 import 'package:kemenham/section/berita_kegiatan.dart';
 import 'package:kemenham/section/daftar_kantor.dart';
-import 'package:kemenham/components/footer.dart';
+// import 'package:kemenham/components/footer.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -19,7 +19,7 @@ class MainPage extends StatelessWidget {
             const BeritaHam(),
             const BeritaKegiatan(),
             const DaftarKantor(),
-            const Footer(),
+            // const Footer(),
           ],
         ),
       ),

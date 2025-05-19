@@ -6,10 +6,18 @@ import 'package:kemenham/pages/detailunitkerja/inspektorat_jendral.dart';
 import 'package:kemenham/pages/detailunitkerja/pusat_data.dart';
 import 'package:kemenham/pages/detailunitkerja/pusat_pengembangan.dart';
 import 'package:kemenham/pages/detailunitkerja/sekretariat_jendral.dart';
+import 'package:kemenham/pages/pengaduan/pengaduan_2018.dart';
+import 'package:kemenham/pages/pengaduan/pengaduan_2019.dart';
+import 'package:kemenham/pages/pengaduan/pengaduan_2020.dart';
+import 'package:kemenham/pages/pengaduan/pengaduan_2021.dart';
+import 'package:kemenham/pages/pengaduan/pengaduan_2022.dart';
+import 'package:kemenham/pages/pengaduan/pengaduan_2023.dart';
+import 'package:kemenham/pages/pengaduan/pengaduan_2024.dart';
 import 'package:kemenham/pages/prestasi.dart';
 import 'package:kemenham/pages/produkhukum/instrumen_ham_internasional.dart';
 import 'package:kemenham/pages/produkhukum/instrumen_ham_nasional.dart';
 import 'package:kemenham/pages/profil_menteri.dart';
+import 'package:kemenham/pages/pusat_informasi.dart';
 import 'package:kemenham/pages/sejarah.dart';
 import 'package:kemenham/pages/struktur.dart';
 import 'package:kemenham/pages/tentang_kemenham.dart';
@@ -49,6 +57,14 @@ class MyApp extends StatelessWidget {
         '/unit-kerja/pusatpengembangan': (context) => const PusatPengembangan(),
         '/ham-internasional': (context) => const InstrumenHamInternasional(),
         '/ham-nasional': (context) => const InstrumenHamNasional(),
+        '/pusat-informasi': (context) => const PusatInformasi(),
+        '/pengaduan/2018': (context) => const Pengaduan2018(),
+        '/pengaduan/2019': (context) => const Pengaduan2019(),
+        '/pengaduan/2020': (context) => const Pengaduan2020(),
+        '/pengaduan/2021': (context) => const Pengaduan2021(),
+        '/pengaduan/2022': (context) => const Pengaduan2022(),
+        '/pengaduan/2023': (context) => const Pengaduan2023(),
+        '/pengaduan/2024': (context) => const Pengaduan2024(),
       },
     );
   }

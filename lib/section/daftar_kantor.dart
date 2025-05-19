@@ -31,7 +31,7 @@ class DaftarKantor extends StatelessWidget {
     return Container(
       width: double.infinity,
       color: const Color(0xFFf5f5f5),
-      padding: const EdgeInsets.symmetric(vertical: 48, horizontal: 16),
+      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
