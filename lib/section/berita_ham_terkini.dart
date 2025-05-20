@@ -13,6 +13,7 @@ class BeritaHam extends StatefulWidget {
 class _BeritaHamState extends State<BeritaHam> {
   List<dynamic> beritaList = [];
   bool isLoading = true;
+  int currentPage = 0; // track halaman carousel
 
   @override
   void initState() {
@@ -29,7 +30,7 @@ class _BeritaHamState extends State<BeritaHam> {
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         setState(() {
-          beritaList = data['data'];
+          beritaList = data['data']['data'];
           isLoading = false;
         });
       } else {
@@ -46,7 +47,7 @@ class _BeritaHamState extends State<BeritaHam> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: const Color(0xFF242458),
+      color: Colors.white,
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,16 +58,18 @@ class _BeritaHamState extends State<BeritaHam> {
               const Text(
                 'Berita HAM Terkini',
                 style: TextStyle(
-                  color: Color(0xFFE3C00A),
+                  color: Color(0xFF242458),
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/list-berita-ham');
+                },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  foregroundColor: Color(0xFF242458),
+                  backgroundColor: const Color(0xFF242458),
+                  foregroundColor: Colors.white,
                 ),
                 child: const Text('Selengkapnya'),
               ),
@@ -74,15 +77,22 @@ class _BeritaHamState extends State<BeritaHam> {
           ),
           const SizedBox(height: 16),
           SizedBox(
-            height: 277,
+            height: 320,
             child:
                 isLoading
                     ? const Center(child: CircularProgressIndicator())
-                    : SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children:
-                            beritaList.map((berita) {
+                    : Column(
+                      children: [
+                        Expanded(
+                          child: PageView.builder(
+                            itemCount: beritaList.length,
+                            onPageChanged: (index) {
+                              setState(() {
+                                currentPage = index;
+                              });
+                            },
+                            itemBuilder: (context, index) {
+                              final berita = beritaList[index];
                               return _buildNewsCard(
                                 context: context,
                                 imagePath:
@@ -99,8 +109,29 @@ class _BeritaHamState extends State<BeritaHam> {
                                   );
                                 },
                               );
-                            }).toList(),
-                      ),
+                            },
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        // indikator dot
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: List.generate(beritaList.length, (index) {
+                            return Container(
+                              margin: const EdgeInsets.symmetric(horizontal: 4),
+                              width: currentPage == index ? 12 : 8,
+                              height: currentPage == index ? 12 : 8,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color:
+                                    currentPage == index
+                                        ? const Color(0xFFE3C00A)
+                                        : Colors.grey[400],
+                              ),
+                            );
+                          }),
+                        ),
+                      ],
                     ),
           ),
         ],
@@ -121,19 +152,19 @@ class _BeritaHamState extends State<BeritaHam> {
       color: Colors.transparent,
       elevation: 0,
       child: SizedBox(
-        width: 200,
+        width: double.infinity,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.network(
               imagePath,
-              height: 100,
-              width: 200,
+              height: 130,
+              width: double.infinity,
               fit: BoxFit.cover,
             ),
             const SizedBox(height: 4),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 6.0),
+              padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 4),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -156,7 +187,7 @@ class _BeritaHamState extends State<BeritaHam> {
                     description,
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(fontSize: 12, color: Colors.white),
+                    style: const TextStyle(fontSize: 12, color: Colors.black),
                   ),
                   const SizedBox(height: 8),
                   SizedBox(

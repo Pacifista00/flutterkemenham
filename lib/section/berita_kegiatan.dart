@@ -13,6 +13,7 @@ class BeritaKegiatan extends StatefulWidget {
 class _BeritaKegiatanState extends State<BeritaKegiatan> {
   List<dynamic> beritaList = [];
   bool isLoading = true;
+  int currentPage = 0; // untuk carousel
 
   @override
   void initState() {
@@ -29,7 +30,7 @@ class _BeritaKegiatanState extends State<BeritaKegiatan> {
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         setState(() {
-          beritaList = data['data']; // Sesuaikan dengan struktur JSON API kamu
+          beritaList = data['data']['data'];
           isLoading = false;
         });
       } else {
@@ -63,7 +64,9 @@ class _BeritaKegiatanState extends State<BeritaKegiatan> {
                 ),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/list-berita-kegiatan');
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF242458),
                   foregroundColor: Colors.white,
@@ -74,19 +77,27 @@ class _BeritaKegiatanState extends State<BeritaKegiatan> {
           ),
           const SizedBox(height: 16),
           SizedBox(
-            height: 277,
+            height: 320,
             child:
                 isLoading
                     ? const Center(child: CircularProgressIndicator())
-                    : SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children:
-                            beritaList.map((berita) {
+                    : Column(
+                      children: [
+                        Expanded(
+                          child: PageView.builder(
+                            itemCount: beritaList.length,
+                            onPageChanged: (index) {
+                              setState(() {
+                                currentPage = index;
+                              });
+                            },
+                            itemBuilder: (context, index) {
+                              final berita = beritaList[index];
+                              final imagePath =
+                                  '${ApiConfig.baseUrl}/storage/${berita['image_path']}';
                               return _buildNewsCard(
                                 context: context,
-                                imagePath:
-                                    '${ApiConfig.baseUrl}/storage/${berita['image_path']}',
+                                imagePath: imagePath,
                                 date: berita['date'] ?? '',
                                 category: berita['category'] ?? '',
                                 title: berita['title'] ?? '',
@@ -99,8 +110,28 @@ class _BeritaKegiatanState extends State<BeritaKegiatan> {
                                   );
                                 },
                               );
-                            }).toList(),
-                      ),
+                            },
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: List.generate(beritaList.length, (index) {
+                            return Container(
+                              margin: const EdgeInsets.symmetric(horizontal: 4),
+                              width: currentPage == index ? 12 : 8,
+                              height: currentPage == index ? 12 : 8,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color:
+                                    currentPage == index
+                                        ? const Color(0xFFE3C00A)
+                                        : Colors.grey[400],
+                              ),
+                            );
+                          }),
+                        ),
+                      ],
                     ),
           ),
         ],
@@ -121,26 +152,26 @@ class _BeritaKegiatanState extends State<BeritaKegiatan> {
       color: Colors.transparent,
       elevation: 0,
       child: SizedBox(
-        width: 200,
+        width: double.infinity,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             imagePath.startsWith('http')
                 ? Image.network(
                   imagePath,
-                  height: 100,
-                  width: 200,
+                  height: 130,
+                  width: double.infinity,
                   fit: BoxFit.cover,
                 )
                 : Image.asset(
                   imagePath,
-                  height: 100,
-                  width: 200,
+                  height: 130,
+                  width: double.infinity,
                   fit: BoxFit.cover,
                 ),
             const SizedBox(height: 4),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 6.0),
+              padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 4),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

@@ -15,7 +15,7 @@ class NewsItem {
 
   factory NewsItem.fromJson(Map<String, dynamic> json) {
     return NewsItem(
-      imagePath: json['image_path'], // sesuaikan dengan key dari API kamu
+      imagePath: json['image_path'],
       date: json['date'],
       category: json['category'],
       title: json['title'],

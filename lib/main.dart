@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:kemenham/components/splash_screen.dart';
 import 'package:kemenham/pages/berita/detail_berita.dart';
 import 'package:kemenham/pages/berita/list_berita.dart';
+import 'package:kemenham/pages/berita/list_berita_ham.dart';
+import 'package:kemenham/pages/berita/list_berita_kegiatan.dart';
 import 'package:kemenham/pages/chatbot/chat_bot.dart';
 import 'package:kemenham/pages/detailunitkerja/direktorat_jendral_instrumen.dart';
 import 'package:kemenham/pages/detailunitkerja/direktorat_jendral_pelayanan.dart';
@@ -73,6 +75,8 @@ class MyApp extends StatelessWidget {
         '/pengaduan/2024': (context) => const Pengaduan2024(),
         '/berita-detail': (context) => const DetailBerita(),
         '/list-berita': (context) => const ListBerita(),
+        '/list-berita-ham': (context) => const ListBeritaHam(),
+        '/list-berita-kegiatan': (context) => const ListBeritaKegiatan(),
         '/chatbot': (context) => const ChatBot(),
       },
     );

@@ -5,14 +5,14 @@ import 'package:kemenham/components/sidebar.dart';
 import 'package:kemenham/components/footer.dart';
 import 'package:kemenham/config/api_config.dart';
 
-class ListBerita extends StatefulWidget {
-  const ListBerita({super.key});
+class ListBeritaHam extends StatefulWidget {
+  const ListBeritaHam({super.key});
 
   @override
-  State<ListBerita> createState() => _ListBeritaState();
+  State<ListBeritaHam> createState() => _ListBeritaHamState();
 }
 
-class _ListBeritaState extends State<ListBerita> {
+class _ListBeritaHamState extends State<ListBeritaHam> {
   List<dynamic> beritaList = [];
   bool isLoading = true;
   int currentPage = 1;
@@ -31,7 +31,7 @@ class _ListBeritaState extends State<ListBerita> {
 
     try {
       final response = await http.get(
-        Uri.parse('${ApiConfig.baseUrl}/api/berita?page=$page'),
+        Uri.parse('${ApiConfig.baseUrl}/api/berita/ham?page=$page'),
       );
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);

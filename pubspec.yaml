@@ -92,6 +92,7 @@ flutter:
 
   assets:
   - assets/images/portalweb-headerlogo.png
+  - assets/images/jumbotron.png
   - assets/images/logofooter.png
   - assets/images/cover.png
   - assets/images/struktur.png

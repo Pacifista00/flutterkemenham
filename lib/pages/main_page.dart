@@ -13,13 +13,24 @@ class MainPage extends StatelessWidget {
     return Sidebar(
       child: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Image.asset('assets/images/jumbotron.png'),
+            const SizedBox(height: 24),
+            Text(
+              'Kementerian Hak Asasi Manusia Republik Indonesia',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF242458),
+              ),
+            ),
+            const SizedBox(height: 24),
             Image.asset('assets/images/cover.png'),
             const BeritaHam(),
             const BeritaKegiatan(),
             const DaftarKantor(),
-            // const Footer(),
           ],
         ),
       ),

@@ -26,8 +26,19 @@ class _ChatBotState extends State<ChatBot> {
       'assets/chatdata/chatdata.json',
     );
     final List<dynamic> jsonResponse = json.decode(jsonString);
+
     setState(() {
       _chatData = jsonResponse.cast<Map<String, dynamic>>();
+
+      // Tambahkan pesan awal dari bot setelah data dimuat
+      _messages.add(
+        _Message(
+          text:
+              'Halo!. Silakan ajukan pertanyaan seputar layanan kami.'
+              'Beberapa kata kunci yang bisa Anda gunakan antara lain: visi misi, alamat, kontak, struktur organisasi, layanan, paspor, imigrasi, hak asasi manusia, CPNS, lapas, notaris, ahli waris, hukum waris, hingga legalisir.',
+          isUser: false,
+        ),
+      );
     });
   }
 
